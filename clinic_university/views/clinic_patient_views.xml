@@ -1,0 +1,116 @@
+ <odoo>
+
+    <!-- =======================
+         Form View with Tabs
+    ======================== -->
+      <record id="hospital_patient_view_tree" model="ir.ui.view">
+        <field name="name">clinic.patient.view.tree</field>
+        <field name="model">clinic.patient</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="full_name"></field>
+                <field name="mrn"></field>
+                <field name="patient_type"/>
+            
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_clinic_patient_form_tabs" model="ir.ui.view">
+        <field name="name">clinic.patient.form.tabs</field>
+        <field name="model">clinic.patient</field>
+        <field name="arch" type="xml">
+            <form string="Patient Profile">
+                <sheet>
+
+                    <!-- Top Information -->
+                    <group>
+                        <!-- <field name="full_name" readonly="1"/> -->
+                        <field name="patient_type"/>
+                        <field name="mrn" readonly="1"/>
+                    </group>
+
+                    <notebook>
+
+                        <!-- General Info Tab -->
+                        <page string="General Info">
+                            <group>
+                                <field name="first_name"/>
+                                <field name="middle_name"/>
+                                <field name="last_name"/>
+                                <field name="family_name"/>
+                                <field name="birth_date"/>
+                                <field name="age" readonly="1"/>
+                                <field name="gender"/>
+                                <field name="address"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="university_id"
+                                       invisible="{'invisible':[('patient_type','!=','student')]}"/>
+                            </group>
+                        </page>
+
+                        <!-- Medical Info Tab -->
+                        <page string="Medical Info">
+                            <group>
+                                <field name="blood_type"/>
+                                <field name="chronic_diseases"/>
+                                <field name="allergies"/>
+                                <field name="previous_surgeries"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- =======================
+         Search View
+    ======================== -->
+    <record id="view_clinic_patient_search" model="ir.ui.view">
+    <field name="name">clinic.patient.search</field>
+    <field name="model">clinic.patient</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="full_name"/>
+            <field name="phone"/>
+            <field name="mrn"/>
+
+            <!-- Filters                                                                                
+            <filter string="Students" domain="[('patient_type','=','student')]"/>
+            <filter string="Professors" domain="[('patient_type','=','professor')]"/>
+            <filter string="Employees" domain="[('patient_type','=','employee')]"/>
+            <filter string="Employee Children" domain="[('patient_type','=','employee_child')]"/>
+            <filter string="Other" domain="[('patient_type','=','other')]"/>
+
+            <filter string="Group" context="{'group_by':'gender'}"/>
+            <filter string="Patient Type" context="{'group_by':'patient_type'}"/>
+                        -->
+        </search>
+
+    </field>
+</record>
+
+    <record id="hospital_patient_action" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">clinic.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_male':1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first patient
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_pateint"
+        name="Patients"
+        action="hospital_patient_action"
+        sequence="0" />
+
+
+
+</odoo>

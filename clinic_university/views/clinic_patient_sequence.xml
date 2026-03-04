@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_clinic_patient_mrn" model="ir.sequence">
+        <field name="name">Clinic Patient MRN</field>
+        <field name="code">clinic.patient.mrn</field>
+        <field name="prefix">MRN</field>
+        <field name="padding">5</field>
+        <field name="implementation">standard</field>
+    </record>
+</odoo>

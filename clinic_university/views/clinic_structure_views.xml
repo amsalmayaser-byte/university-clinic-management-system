@@ -1,0 +1,146 @@
+
+<odoo>
+
+    <!-- ===================== -->
+    <!--        SPECIALTY      -->
+    <!-- ===================== -->
+
+    <!-- Tree View -->
+    <record id="view_clinic_specialty_tree" model="ir.ui.view">
+        <field name="name">clinic.specialty.tree</field>
+        <field name="model">clinic.specialty</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="consultation_charge"/>
+                <field name="department_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_clinic_specialty_form" model="ir.ui.view">
+        <field name="name">clinic.specialty.form</field>
+        <field name="model">clinic.specialty</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="consultation_charge"/>
+                        <field name="department_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_clinic_specialty_search" model="ir.ui.view">
+        <field name="name">clinic.specialty.search</field>
+        <field name="model">clinic.specialty</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="department_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_clinic_specialty" model="ir.actions.act_window">
+        <field name="name">Specialties</field>
+        <field name="res_model">clinic.specialty</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ===================== -->
+    <!--       DEPARTMENT      -->
+    <!-- ===================== -->
+
+    <!-- Tree View -->
+    <record id="view_hospital_department_tree" model="ir.ui.view">
+        <field name="name">clinic.department.tree</field>
+        <field name="model">clinic.department</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_clinic_department_form" model="ir.ui.view">
+        <field name="name">clinic.department.form</field>
+        <field name="model">clinic.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Specialties">
+                            <field name="specialty_ids">
+                                <tree editable="bottom">
+                                    <field name="specialty_id"/>
+                                    <!-- <field name="code"/>
+                                    <field name="consultation_charge"/> -->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_clinic_department_search" model="ir.ui.view">
+        <field name="name">clinic.department.search</field>
+        <field name="model">clinic.department</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+            </search>
+        </field>
+    </record>
+<!-- Action -->
+    <record id="action_clinic_department" model="ir.actions.act_window">
+        <field name="name">Departments</field>
+        <field name="res_model">clinic.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ===================== -->
+    <!--        MENUS          -->
+    <!-- ===================== -->
+
+    <menuitem id="menu_clinic_root"
+              name="Clinic"/>
+
+    <menuitem id="menu_clinic_structure"
+              name="Structure"
+              parent="menu_clinic_root"/>
+
+    <menuitem id="menu_clinic_specialty"
+              name="Specialties"
+              parent="menu_clinic_structure"
+              action="action_clinic_specialty"/>
+
+    <menuitem id="menu_clinic_department"
+              name="Departments"
+              parent="menu_clinic_structure"
+              action="action_clinic_department"/>
+
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_clinic_patient_user,cesses_name_clinic,model_clinic_patient,,1,1,1,1
+access_clinic_specialty,clinic.specialty,model_clinic_specialty,,1,1,1,1
+access_clinic_department,clinic.department,model_clinic_department,,1,1,1,1
+access_clinic_clinic_specialty_line,clinic_specialty_line,model_clinic_specialty_line,,1,1,1,1
